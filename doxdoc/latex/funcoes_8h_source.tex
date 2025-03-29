@@ -1,0 +1,73 @@
+\doxysection{funcoes.\+h}
+\hypertarget{funcoes_8h_source}{}\label{funcoes_8h_source}\index{/root/EDA/TrabalhoEDA/src/funcoes.h@{/root/EDA/TrabalhoEDA/src/funcoes.h}}
+\mbox{\hyperlink{funcoes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \#define\ TAM\ 250}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#pragma\ region\ Estruturas}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{int}\ l,c;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}*\ next;}
+\DoxyCodeLine{00024\ \ \}\mbox{\hyperlink{structAntena}{Antena}};}
+\DoxyCodeLine{00025\ \ }
+\DoxyCodeLine{00027\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEfeito}{Efeito}}\{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ l,c;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structEfeito}{Efeito}}*\ next;}
+\DoxyCodeLine{00030\ \ \}\mbox{\hyperlink{structEfeito}{Efeito}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenaFicheiro}{AntenaFicheiro}}\{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ l,c;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
+\DoxyCodeLine{00036\ \ \}\mbox{\hyperlink{structAntenaFicheiro}{AntenaFicheiro}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#pragma\ region\ Antenas}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00050\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_a675ac69378d7c9262e2da6e79773372e}{CriarAntena}}(\textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c,\ \textcolor{keywordtype}{char}\ frequencia);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_af368aa93f4ba0d297e890f93840c69b1}{InserirAntena}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \mbox{\hyperlink{structAntena}{Antena}}*\ nova);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00069\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_a0763c814be2596f218bf0582023774f1}{RemoverAntena}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00078\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_a39aaacf1aa40a2ff4c6b3c69a4e54a9f}{RemoverAllAntenaComEfeito}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \mbox{\hyperlink{structEfeito}{Efeito}}*\ head);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00086\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_a748525c7fd7531082241e0f65f39a86c}{DestroiLista}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#pragma\ region\ Efeitos}}
+\DoxyCodeLine{00098\ \ \mbox{\hyperlink{structEfeito}{Efeito}}*\ \mbox{\hyperlink{funcoes_8h_a47415f842985a1986f7e454f59e1a357}{CriarEfeito}}(\textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00107\ \ \mbox{\hyperlink{structEfeito}{Efeito}}*\ \mbox{\hyperlink{funcoes_8h_ad8ea8f8fbb5e1503f4ce0ea3eac61227}{InserirEfeito}}(\mbox{\hyperlink{structEfeito}{Efeito}}*\ head,\ \mbox{\hyperlink{structEfeito}{Efeito}}*\ novo);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00116\ \ \mbox{\hyperlink{structEfeito}{Efeito}}*\ \mbox{\hyperlink{funcoes_8h_acc33300b53a4efdb3e8e716a142f5e73}{DescubrirEfeito}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \#pragma\ endregion}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \#pragma\ region\ Listar\ na\ tela}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00127\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funcoes_8h_a0cc803d56a0d51e0cc4cd415564f2c12}{ListarAntenas}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00134\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{funcoes_8h_a7b7a32b2b59d40bb7848e04e2914a717}{ListarEfeitos}}(\mbox{\hyperlink{structEfeito}{Efeito}}*\ head);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \#pragma\ endregion}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \#pragma\ region\ Ficheiros}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00146\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_a37c686558e1c4e0437e831aa1e3f2415}{CarregarDoFicheiro}}(\textcolor{keywordtype}{char}*\ Ficheiro);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00155\ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{funcoes_8h_ab1c5d62c02ed94a1ad04c4610e2867c0}{GuardarAntenasBin}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \textcolor{keywordtype}{char}*\ Ficheiro);\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00163\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{funcoes_8h_ab2ba1847b82bd4740724c1f1aabda7ba}{LerAntenasBin}}\ (\textcolor{keywordtype}{char}*\ Ficheiro);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \#pragma\ endregion}}
+
+\end{DoxyCode}
