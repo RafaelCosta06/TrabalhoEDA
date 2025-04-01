@@ -22,17 +22,18 @@ int main(){
     Efeito* Efeitos = NULL;
     Antena* aux;
     bool ficheiro;
+    Dimensao matriz = {0,0};
     
     printf("\n");
     printf("MATRIZ CARREGADA DO FICHEIRO:\n");
-    Antenas = CarregarDoFicheiro ("matriz.txt");
+    Antenas = CarregarDoFicheiro ("matriz.txt", &matriz);
     ListarAntenas(Antenas);
     // Imprimir a Matriz
 
     printf("\n");
     printf("INSERIDA UMA ANTENA:\n");
     aux = CriarAntena(5,5,'B');
-    Antenas = InserirAntena(Antenas, aux);
+    Antenas = InserirAntena(Antenas, aux, &matriz);
     ListarAntenas(Antenas);
     // Imprimir a Matriz
 
@@ -44,13 +45,13 @@ int main(){
 
     printf("\n");
     printf("CALCULAR EFEITOS:\n");
-    Efeitos = DescubrirEfeito(Antenas);
+    Efeitos = DescubrirEfeito(Antenas, &matriz);
     ListarEfeitos (Efeitos);
 
     printf("\n");
     printf("REMOVER ANTENAS EM CONFLITO E CALCULAR NOVO EFEITO\n");
     Antenas = RemoverAllAntenaComEfeito(Antenas, Efeitos);
-    Efeitos = DescubrirEfeito (Antenas);
+    Efeitos = DescubrirEfeito (Antenas, &matriz);
     ListarAntenas (Antenas);
     ListarEfeitos (Efeitos);
 
@@ -65,10 +66,14 @@ int main(){
     printf("Antenas depois da lista ser destruida:\n");
     ListarAntenas (Antenas);
 
-    Antenas = LerAntenasBin("Antenas.bin");
+    Antenas = LerAntenasBin("Antenas.bin", &matriz);
     printf("\n");
     printf("Antenas depois de serem lidas do ficheiro:\n");
     ListarAntenas (Antenas);
+
+    printf("\n");
+    printf("%d - Linhas Matriz\n", matriz.l);
+    printf("%d - Colunas Matriz", matriz.c);
 
 
     return 0;

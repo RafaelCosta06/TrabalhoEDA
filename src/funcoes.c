@@ -58,9 +58,17 @@ Antena* CriarAntena(int l, int c, char frequencia){
  * @param nova Apontador para a nova Antena a adicionar
  * @return Antena* Apontador para o início da lista das Antenas já atualizada
  */
-Antena* InserirAntena(Antena* inicio, Antena* nova){
+Antena* InserirAntena(Antena* inicio, Antena* nova, Dimensao* matriz){
     if(inicio == NULL) return nova; 
     if(nova == NULL) return inicio; 
+
+    if(nova->l >= matriz->l){
+        matriz->l = nova->l +1;
+    }
+
+    if(nova->c >= matriz->c){
+        matriz->c = nova->c +1;
+    }
 
     Antena* aux=inicio;
     Antena* aux2=aux;
@@ -204,10 +212,18 @@ Efeito* CriarEfeito(int l, int c){
  * @param novo Apontador para o novo Efeito a adicionar
  * @return Efeito* Apontador para o início da lista já atualizada
  */
-Efeito* InserirEfeito(Efeito* head, Efeito* novo){
+Efeito* InserirEfeito(Efeito* head, Efeito* novo, Dimensao* matriz){
     if(head == NULL)return novo;
     if(novo == NULL)return head;
     if(novo->l <0 || novo->c < 0)return head; // Garante que os Efeitos não tenham valores negativos
+
+    if(novo->l >= matriz->l){
+        matriz->l = novo->l +1;
+    }
+
+    if(novo->c >= matriz->c){
+        matriz->c = novo->c +1;
+    }
 
     Efeito* aux= head;
     Efeito* aux2= aux;
@@ -248,7 +264,7 @@ Efeito* InserirEfeito(Efeito* head, Efeito* novo){
  * @param head Apontador para o início da lista ligada dos Efeitos. 
  * @return * Efeito* Apontador para o início da lista ligada dos Efeitos já atualizada. 
  */
-Efeito* DescubrirEfeito(Antena* inicio){
+Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz){
 
     Efeito* head = NULL;
     Efeito* efeito1;
@@ -263,22 +279,22 @@ Efeito* DescubrirEfeito(Antena* inicio){
 
                 if((abs(difColuna) == 2 || abs(difColuna) == 1) && difLinha == 0){ // Caso estejam na mesma linha
                     efeito1 = CriarEfeito(aux->l, aux->c - difColuna); 
-                    head = InserirEfeito(head, efeito1);                                        
+                    head = InserirEfeito(head, efeito1, matriz);                                        
                     efeito2 = CriarEfeito(aux2->l, aux2->c + difColuna);
-                    head = InserirEfeito(head, efeito2);
+                    head = InserirEfeito(head, efeito2, matriz);
                 }
 
                 if((abs(difLinha) == 2 || abs(difLinha) == 1) && difColuna == 0){ // Caso estejam na mesma coluna
                     efeito1 = CriarEfeito(aux->l - difLinha, aux->c);                        
-                    head = InserirEfeito(head, efeito1);
+                    head = InserirEfeito(head, efeito1, matriz);
                     efeito2 = CriarEfeito(aux2->l + difLinha, aux2->c);
-                    head = InserirEfeito(head, efeito2);
+                    head = InserirEfeito(head, efeito2, matriz);
                 }
                 if((abs(difColuna) == 2 || abs(difColuna) == 1 ) && (abs(difLinha) == 2 || abs(difLinha) == 1)){ // Caso estejam na Vertical
                     efeito1 = CriarEfeito(aux->l -difLinha, aux->c - difColuna); 
-                    head = InserirEfeito(head, efeito1);
+                    head = InserirEfeito(head, efeito1, matriz);
                     efeito2 = CriarEfeito(aux2->l + difLinha, aux2->c + difColuna);
-                    head= InserirEfeito(head, efeito2);
+                    head= InserirEfeito(head, efeito2, matriz);
                 }
             }
         }
@@ -335,7 +351,7 @@ void ListarEfeitos(Efeito* head) {
  * @param Ficheiro Ficheiro que contém a matriz
  * @return Antena* Apontador para o início da lista já atualizada
  */
-Antena* CarregarDoFicheiro(char* Ficheiro){
+Antena* CarregarDoFicheiro(char* Ficheiro, Dimensao* matriz){
     FILE* ficheiro=fopen(Ficheiro, "r");
     if(ficheiro == NULL){
         return NULL;
@@ -343,13 +359,14 @@ Antena* CarregarDoFicheiro(char* Ficheiro){
 
     Antena* inicio = NULL;
     int l=0;
-    int c=0;                                        
+    int c=0; 
+    int max_colunas;                                       
     char caracter;
 
     while((caracter = fgetc(ficheiro)) != EOF){
         if (caracter >= 'A' && caracter <= 'Z'){
-            Antena* nova = CriarAntena(l, c, caracter);  // MUDAR DOCUMENTAÇÃO
-            inicio= InserirAntena(inicio, nova);
+            Antena* nova = CriarAntena(l, c, caracter); 
+            inicio= InserirAntena(inicio, nova, matriz);
             c++;
         }
         else if(caracter== '.'){
@@ -357,10 +374,17 @@ Antena* CarregarDoFicheiro(char* Ficheiro){
         }
 
         else if(caracter=='\n'){
+            if(c > max_colunas){
+                max_colunas = c; 
+            }
+
             l++;
             c=0;
         }
     }
+
+    matriz->c = max_colunas;
+    matriz->l = l;
 
     fclose(ficheiro);
     return inicio;
@@ -399,7 +423,7 @@ bool GuardarAntenasBin(Antena* inicio, char* Ficheiro){
  * @param Ficheiro Ficheiro Binário que contém as Antenas
  * @return Antena* Apontador para o início da lista ligadas das Antenas
  */
-Antena* LerAntenasBin (char* Ficheiro){
+Antena* LerAntenasBin (char* Ficheiro, Dimensao* matriz){
     FILE* ficheiro = fopen(Ficheiro, "rb");
     if(ficheiro == NULL)return NULL;
 
@@ -409,7 +433,7 @@ Antena* LerAntenasBin (char* Ficheiro){
 
     while(fread(&antenaFich, sizeof(antenaFich), 1, ficheiro)){
         aux = CriarAntena(antenaFich.l, antenaFich.c, antenaFich.frequencia);
-        inicio = InserirAntena(inicio, aux);
+        inicio = InserirAntena(inicio, aux, matriz);
     }
     fclose(ficheiro);
     return inicio;

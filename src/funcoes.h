@@ -35,6 +35,12 @@
     char frequencia;
  }AntenaFicheiro;
 
+ /// @brief Estrutura para armazenar a dimensão da Matriz
+ typedef struct Dimensao{
+   int l;
+   int c;
+ }Dimensao;
+
 #pragma endregion
 
 #pragma region Antenas
@@ -56,7 +62,7 @@
  * @param nova Apontador para a nova Antena a adicionar
  * @return Antena* Apontador para o ini­cio da lista já atualizada
  */
- Antena* InserirAntena(Antena* inicio, Antena* nova);
+ Antena* InserirAntena(Antena* inicio, Antena* nova, Dimensao* matriz);
 
 /**
  * @brief Função para remover uma Antena
@@ -104,7 +110,7 @@
  * @param novo Apontador para o novo Efeito a adicionar
  * @return Efeito* Apontador para o início da lista já atualizada
  */
- Efeito* InserirEfeito(Efeito* head, Efeito* novo);
+ Efeito* InserirEfeito(Efeito* head, Efeito* novo, Dimensao* matriz);
 
 /**
  * @brief Função para descubrir a localização dos Efeitos
@@ -113,7 +119,7 @@
  * @param head Apontador para o início da lista ligada dos Efeitos. 
  * @return * Efeito* Apontador para o início da lista ligada dos Efeitos já atualizada. 
  */
- Efeito* DescubrirEfeito(Antena* inicio);
+ Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz);
 
  #pragma endregion
 
@@ -143,7 +149,7 @@
  * @param Ficheiro Ficheiro que contém a matriz
  * @return Antena* Apontador para o iní­cio da lista já atualizada
  */
- Antena* CarregarDoFicheiro(char* Ficheiro);
+ Antena* CarregarDoFicheiro(char* Ficheiro, Dimensao* matriz);
 
 /**
  * @brief Função para guardar as Antenas num ficheiro binário
@@ -160,6 +166,6 @@
  * @param Ficheiro Ficheiro Binário que contém as Antenas
  * @return Antena* Apontador para o início da lista ligadas das Antenas
  */
- Antena* LerAntenasBin (char* Ficheiro);
+ Antena* LerAntenasBin (char* Ficheiro, Dimensao* matriz);
 
  #pragma endregion
