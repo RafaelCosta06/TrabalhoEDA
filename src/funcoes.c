@@ -155,8 +155,12 @@ Antena* RemoverAllAntenaComEfeito (Antena* inicio, Efeito* head){
  * @param inicio Apontador para o inicio da lista das Antenas
  * @return Antena* Apontador para o inicio da lista das Antenas mas já destruída
  */
-Antena* DestroiLista(Antena* inicio){
+Antena* DestroiLista(Antena* inicio, Dimensao* matriz){
     if(inicio == NULL)return inicio;
+    if(matriz != NULL){
+        matriz->c = 0;
+        matriz->l = 0;
+    }
 
     Antena* aux;
     while(inicio != NULL){
@@ -338,6 +342,45 @@ void ListarEfeitos(Efeito* head) {
         printf("| %d   |  %d  |\n", aux->l, aux->c);
     }
 }
+
+/**
+  * @brief Função para imprimir na tela a Matriz
+  * 
+  * @param inicio Apontador para o início da lista das Antenas
+  * @param head Apontador para o início da lista dos Efeitod
+  * @param matriz Estrutura que contém os limites da Matriz
+  */
+ void Matriz (Antena* inicio, Efeito* head, Dimensao* matriz){
+
+    Antena* auxAntena;
+    Efeito* auxEfeito;
+
+    for(int l =0; l<matriz->l; l++){
+        for(int c=0 ; c<matriz->c; c++){
+            char caracter = '.'; // preencher por padrão como vazio
+
+            for(auxAntena = inicio; auxAntena != NULL ; auxAntena = auxAntena->next){
+                if(auxAntena->l == l && auxAntena->c == c){
+                    caracter = auxAntena->frequencia;
+                }
+            }
+
+            for(auxEfeito = head ; auxEfeito != NULL ; auxEfeito = auxEfeito->next){
+                if(auxEfeito->l == l && auxEfeito->c == c){
+                    if(caracter != '.'){
+                        caracter = '!';
+                    }else{
+                        caracter = '#';
+                    }
+                }
+            }
+
+            printf("%c", caracter);
+
+        }
+        printf("\n"); // trocar de linha quando acabam as colunas
+    }
+ }
 
 #pragma endregion
 

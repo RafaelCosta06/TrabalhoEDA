@@ -89,7 +89,7 @@
  * @param inicio Apontador para o inicio da lista das Antenas
  * @return Antena* Apontador para o inicio da lista das Antenas mas já destruÃ­da
  */
- Antena* DestroiLista(Antena* inicio);
+ Antena* DestroiLista(Antena* inicio, Dimensao* matriz);
 
 #pragma endregion
 
@@ -138,6 +138,15 @@
  * @param head Apontador para o início da lista ligada dos Efeitos
  */
  void ListarEfeitos(Efeito* head);
+
+ /**
+  * @brief Função para imprimir na tela a Matriz
+  * 
+  * @param inicio Apontador para o início da lista das Antenas
+  * @param head Apontador para o início da lista dos Efeitod
+  * @param matriz Estrutura que contém os limites da Matriz
+  */
+ void Matriz (Antena* inicio, Efeito* head, Dimensao* matriz);
 
  #pragma endregion
 

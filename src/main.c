@@ -27,26 +27,25 @@ int main(){
     printf("\n");
     printf("MATRIZ CARREGADA DO FICHEIRO:\n");
     Antenas = CarregarDoFicheiro ("matriz.txt", &matriz);
-    ListarAntenas(Antenas);
-    // Imprimir a Matriz
+    Matriz (Antenas, Efeitos, &matriz);
 
     printf("\n");
     printf("INSERIDA UMA ANTENA:\n");
     aux = CriarAntena(5,5,'B');
     Antenas = InserirAntena(Antenas, aux, &matriz);
-    ListarAntenas(Antenas);
-    // Imprimir a Matriz
+    Matriz (Antenas, Efeitos, &matriz);
 
     printf("\n");
     printf("ANTENA REMOVIDA:\n");
     Antenas = RemoverAntena(Antenas,5,5);
-    ListarAntenas(Antenas);
-    // Imprimir a Matriz
+    Matriz (Antenas, Efeitos, &matriz);
 
     printf("\n");
     printf("CALCULAR EFEITOS:\n");
     Efeitos = DescubrirEfeito(Antenas, &matriz);
+    ListarAntenas (Antenas);
     ListarEfeitos (Efeitos);
+    Matriz (Antenas, Efeitos, &matriz);
 
     printf("\n");
     printf("REMOVER ANTENAS EM CONFLITO E CALCULAR NOVO EFEITO\n");
@@ -54,14 +53,14 @@ int main(){
     Efeitos = DescubrirEfeito (Antenas, &matriz);
     ListarAntenas (Antenas);
     ListarEfeitos (Efeitos);
-
-    // Imprimir matriz com efeitos e coordenadas
+    Matriz (Antenas, Efeitos, &matriz);
+    
 
     ficheiro = GuardarAntenasBin(Antenas, "Antenas.bin");
     printf("\n");
     printf("Ficheiro: %d\n", ficheiro);
 
-    Antenas = DestroiLista(Antenas);
+    Antenas = DestroiLista(Antenas, &matriz);
     printf("\n");
     printf("Antenas depois da lista ser destruida:\n");
     ListarAntenas (Antenas);
@@ -69,11 +68,9 @@ int main(){
     Antenas = LerAntenasBin("Antenas.bin", &matriz);
     printf("\n");
     printf("Antenas depois de serem lidas do ficheiro:\n");
-    ListarAntenas (Antenas);
+    Matriz (Antenas, Efeitos, &matriz);
+    ListarAntenas(Antenas);
 
-    printf("\n");
-    printf("%d - Linhas Matriz\n", matriz.l);
-    printf("%d - Colunas Matriz", matriz.c);
 
 
     return 0;
