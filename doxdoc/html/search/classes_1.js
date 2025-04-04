@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['efeito_0',['Efeito',['../structEfeito.html',1,'']]]
+  ['dimensao_0',['Dimensao',['../structDimensao.html',1,'']]]
 ];

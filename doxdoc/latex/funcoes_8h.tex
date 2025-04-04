@@ -30,7 +30,9 @@ struct \mbox{\hyperlink{structAntena}{Antena}}
 struct \mbox{\hyperlink{structEfeito}{Efeito}}
 \begin{DoxyCompactList}\small\item\em Estrutura para as localizações com efeito nefasto. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structAntenaFicheiro}{Antena\+Ficheiro}}
-\begin{DoxyCompactList}\small\item\em Estrutura das Antenas para guardar/carregar de um ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estrutura das Antenas para guardar/carregar de um ficheiro binário. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDimensao}{Dimensao}}
+\begin{DoxyCompactList}\small\item\em Estrutura para armazenar a dimensão da Matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,35 +50,42 @@ typedef struct \mbox{\hyperlink{structEfeito}{Efeito}} {\bfseries Efeito}
 \begin{DoxyCompactList}\small\item\em Estrutura para as localizações com efeito nefasto. \end{DoxyCompactList}\item 
 \Hypertarget{funcoes_8h_ad56f6690bfec268e5201ddb049cb490e}\label{funcoes_8h_ad56f6690bfec268e5201ddb049cb490e} 
 typedef struct \mbox{\hyperlink{structAntenaFicheiro}{Antena\+Ficheiro}} {\bfseries Antena\+Ficheiro}
-\begin{DoxyCompactList}\small\item\em Estrutura das Antenas para guardar/carregar de um ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Estrutura das Antenas para guardar/carregar de um ficheiro binário. \end{DoxyCompactList}\item 
+\Hypertarget{funcoes_8h_a3bfcbadbb71d3f5227f3e9eabd847068}\label{funcoes_8h_a3bfcbadbb71d3f5227f3e9eabd847068} 
+typedef struct \mbox{\hyperlink{structDimensao}{Dimensao}} {\bfseries Dimensao}
+\begin{DoxyCompactList}\small\item\em Estrutura para armazenar a dimensão da Matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a675ac69378d7c9262e2da6e79773372e}{Criar\+Antena}} (int l, int c, char frequencia)
 \begin{DoxyCompactList}\small\item\em Função para criar uma nova antenas. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_af368aa93f4ba0d297e890f93840c69b1}{Inserir\+Antena}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}nova)
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a6d328d7ad8367066246e39dddd9545c8}{Inserir\+Antena}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}nova, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Insere uma nova antena na lista das Antenas de forma ordenada. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a0763c814be2596f218bf0582023774f1}{Remover\+Antena}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, int l, int c)
 \begin{DoxyCompactList}\small\item\em Função para remover uma \doxylink{structAntena}{Antena}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a39aaacf1aa40a2ff4c6b3c69a4e54a9f}{Remover\+All\+Antena\+Com\+Efeito}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head)
 \begin{DoxyCompactList}\small\item\em Remove todas as Antenas que estejam a coincidir com a localização de um efeito. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a748525c7fd7531082241e0f65f39a86c}{Destroi\+Lista}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio)
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_aef2643dd179172468686d2ec843099b1}{Destroi\+Lista\+Ant}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Destroi toda a lista das Antenas. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a47415f842985a1986f7e454f59e1a357}{Criar\+Efeito}} (int l, int c)
 \begin{DoxyCompactList}\small\item\em Função para criar um efeito novo. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_ad8ea8f8fbb5e1503f4ce0ea3eac61227}{Inserir\+Efeito}} (\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}novo)
+\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_aea46a590be5ab828fcca942c79f36a1c}{Inserir\+Efeito}} (\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}novo, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Insere o novo \doxylink{structEfeito}{Efeito} na lista dos Efeitos de forma ordenada pela sua coluna "{}c"{} e linha "{}l"{}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_acc33300b53a4efdb3e8e716a142f5e73}{Descubrir\+Efeito}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio)
+\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_af7032de7f35e57f348f47418f6846303}{Descubrir\+Efeito}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Função para descubrir a localização dos Efeitos. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_aa9e499232db4efcea6616bb43fd12ef4}{Destroi\+Lista\+Efei}} (\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head)
+\begin{DoxyCompactList}\small\item\em Função para destruir a Lista dos Efeitos. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{funcoes_8h_a0cc803d56a0d51e0cc4cd415564f2c12}{Listar\+Antenas}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio)
 \begin{DoxyCompactList}\small\item\em Função para apresentar na tela as Antenas de forma tabular. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{funcoes_8h_a7b7a32b2b59d40bb7848e04e2914a717}{Listar\+Efeitos}} (\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head)
 \begin{DoxyCompactList}\small\item\em Função para apresentar na tela Efeitos de forma tabular. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_a37c686558e1c4e0437e831aa1e3f2415}{Carregar\+Do\+Ficheiro}} (char \texorpdfstring{$\ast$}{*}Ficheiro)
+void \mbox{\hyperlink{funcoes_8h_ae9db31ad282622a7aed13e65b2c0a394}{Matriz}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}head, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
+\begin{DoxyCompactList}\small\item\em Função para imprimir na tela a Matriz. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_aeb6f5f4ff4a0aebb27d944f80cff4c1d}{Carregar\+Do\+Ficheiro}} (char \texorpdfstring{$\ast$}{*}Ficheiro, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Função para ler de um ficeheiro externo \textquotesingle{}.txt\textquotesingle{} a matriz que contém as Antenas. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{funcoes_8h_ab1c5d62c02ed94a1ad04c4610e2867c0}{Guardar\+Antenas\+Bin}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}inicio, char \texorpdfstring{$\ast$}{*}Ficheiro)
 \begin{DoxyCompactList}\small\item\em Função para guardar as Antenas num ficheiro binário Retorna 1 em caso de sucesso, 0 em caso de falha. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_ab2ba1847b82bd4740724c1f1aabda7ba}{Ler\+Antenas\+Bin}} (char \texorpdfstring{$\ast$}{*}Ficheiro)
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8h_aaf33aee39673740910b0f1687aea1e1f}{Ler\+Antenas\+Bin}} (char \texorpdfstring{$\ast$}{*}Ficheiro, \mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}matriz)
 \begin{DoxyCompactList}\small\item\em Ficheiro para ler as Antenas atraváves de um ficheiro binário. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -98,11 +107,11 @@ Copyright (c) 2025
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{funcoes_8h_a37c686558e1c4e0437e831aa1e3f2415}\label{funcoes_8h_a37c686558e1c4e0437e831aa1e3f2415} 
+\Hypertarget{funcoes_8h_aeb6f5f4ff4a0aebb27d944f80cff4c1d}\label{funcoes_8h_aeb6f5f4ff4a0aebb27d944f80cff4c1d} 
 \index{funcoes.h@{funcoes.h}!CarregarDoFicheiro@{CarregarDoFicheiro}}
 \index{CarregarDoFicheiro@{CarregarDoFicheiro}!funcoes.h@{funcoes.h}}
 \doxysubsubsection{\texorpdfstring{CarregarDoFicheiro()}{CarregarDoFicheiro()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Carregar\+Do\+Ficheiro (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{Ficheiro }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Carregar\+Do\+Ficheiro (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{Ficheiro,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -194,11 +203,11 @@ Esta função aloca memória para uma nova estrutura "{}\+Efeito"{} e retorna um
 \begin{DoxyReturn}{Returns}
 Efeito\texorpdfstring{$\ast$}{*} Ponteiro para o inicio da lista dos Efeitos 
 \end{DoxyReturn}
-\Hypertarget{funcoes_8h_acc33300b53a4efdb3e8e716a142f5e73}\label{funcoes_8h_acc33300b53a4efdb3e8e716a142f5e73} 
+\Hypertarget{funcoes_8h_af7032de7f35e57f348f47418f6846303}\label{funcoes_8h_af7032de7f35e57f348f47418f6846303} 
 \index{funcoes.h@{funcoes.h}!DescubrirEfeito@{DescubrirEfeito}}
 \index{DescubrirEfeito@{DescubrirEfeito}!funcoes.h@{funcoes.h}}
 \doxysubsubsection{\texorpdfstring{DescubrirEfeito()}{DescubrirEfeito()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} Descubrir\+Efeito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} Descubrir\+Efeito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -232,11 +241,11 @@ Com a ajuda de dois auxiliares, vamos comparar todas as Antenas umas com as outr
 \begin{DoxyReturn}{Returns}
 \texorpdfstring{$\ast$}{*} Efeito\texorpdfstring{$\ast$}{*} Apontador para o início da lista ligada dos Efeitos já atualizada. 
 \end{DoxyReturn}
-\Hypertarget{funcoes_8h_a748525c7fd7531082241e0f65f39a86c}\label{funcoes_8h_a748525c7fd7531082241e0f65f39a86c} 
-\index{funcoes.h@{funcoes.h}!DestroiLista@{DestroiLista}}
-\index{DestroiLista@{DestroiLista}!funcoes.h@{funcoes.h}}
-\doxysubsubsection{\texorpdfstring{DestroiLista()}{DestroiLista()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Destroi\+Lista (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio }\end{DoxyParamCaption})}
+\Hypertarget{funcoes_8h_aef2643dd179172468686d2ec843099b1}\label{funcoes_8h_aef2643dd179172468686d2ec843099b1} 
+\index{funcoes.h@{funcoes.h}!DestroiListaAnt@{DestroiListaAnt}}
+\index{DestroiListaAnt@{DestroiListaAnt}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{DestroiListaAnt()}{DestroiListaAnt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Destroi\+Lista\+Ant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -257,6 +266,24 @@ Antena\texorpdfstring{$\ast$}{*} Apontador para o inicio da lista das Antenas ma
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Antena\texorpdfstring{$\ast$}{*} Apontador para o inicio da lista das Antenas mas já destruída 
+\end{DoxyReturn}
+\Hypertarget{funcoes_8h_aa9e499232db4efcea6616bb43fd12ef4}\label{funcoes_8h_aa9e499232db4efcea6616bb43fd12ef4} 
+\index{funcoes.h@{funcoes.h}!DestroiListaEfei@{DestroiListaEfei}}
+\index{DestroiListaEfei@{DestroiListaEfei}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{DestroiListaEfei()}{DestroiListaEfei()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} Destroi\+Lista\+Efei (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{head }\end{DoxyParamCaption})}
+
+
+
+Função para destruir a Lista dos Efeitos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Apontador para o início da lista dos Efeitos \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Efeito\texorpdfstring{$\ast$}{*} Apontador para o início da lista dos Efeitos mas já vazia 
 \end{DoxyReturn}
 \Hypertarget{funcoes_8h_ab1c5d62c02ed94a1ad04c4610e2867c0}\label{funcoes_8h_ab1c5d62c02ed94a1ad04c4610e2867c0} 
 \index{funcoes.h@{funcoes.h}!GuardarAntenasBin@{GuardarAntenasBin}}
@@ -284,11 +311,11 @@ Função para guardar as Antenas num ficheiro binário Retorna 1 em caso de suce
 {\em Ficheiro} & Ficheiro onde vamos guardar a informação \\
 \hline
 \end{DoxyParams}
-\Hypertarget{funcoes_8h_af368aa93f4ba0d297e890f93840c69b1}\label{funcoes_8h_af368aa93f4ba0d297e890f93840c69b1} 
+\Hypertarget{funcoes_8h_a6d328d7ad8367066246e39dddd9545c8}\label{funcoes_8h_a6d328d7ad8367066246e39dddd9545c8} 
 \index{funcoes.h@{funcoes.h}!InserirAntena@{InserirAntena}}
 \index{InserirAntena@{InserirAntena}!funcoes.h@{funcoes.h}}
 \doxysubsubsection{\texorpdfstring{InserirAntena()}{InserirAntena()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Inserir\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{nova }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Inserir\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{nova,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -318,11 +345,11 @@ A função percorre a lista com ajuda de dois auxiliares á procura da localiza�
 \begin{DoxyReturn}{Returns}
 Antena\texorpdfstring{$\ast$}{*} Apontador para o início da lista das Antenas já atualizada 
 \end{DoxyReturn}
-\Hypertarget{funcoes_8h_ad8ea8f8fbb5e1503f4ce0ea3eac61227}\label{funcoes_8h_ad8ea8f8fbb5e1503f4ce0ea3eac61227} 
+\Hypertarget{funcoes_8h_aea46a590be5ab828fcca942c79f36a1c}\label{funcoes_8h_aea46a590be5ab828fcca942c79f36a1c} 
 \index{funcoes.h@{funcoes.h}!InserirEfeito@{InserirEfeito}}
 \index{InserirEfeito@{InserirEfeito}!funcoes.h@{funcoes.h}}
 \doxysubsubsection{\texorpdfstring{InserirEfeito()}{InserirEfeito()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} Inserir\+Efeito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{novo }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*} Inserir\+Efeito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{novo,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -354,11 +381,11 @@ A função percorre a lista com ajuda de dois auxiliares á procura da localiza�
 \begin{DoxyReturn}{Returns}
 Efeito\texorpdfstring{$\ast$}{*} Apontador para o início da lista já atualizada 
 \end{DoxyReturn}
-\Hypertarget{funcoes_8h_ab2ba1847b82bd4740724c1f1aabda7ba}\label{funcoes_8h_ab2ba1847b82bd4740724c1f1aabda7ba} 
+\Hypertarget{funcoes_8h_aaf33aee39673740910b0f1687aea1e1f}\label{funcoes_8h_aaf33aee39673740910b0f1687aea1e1f} 
 \index{funcoes.h@{funcoes.h}!LerAntenasBin@{LerAntenasBin}}
 \index{LerAntenasBin@{LerAntenasBin}!funcoes.h@{funcoes.h}}
 \doxysubsubsection{\texorpdfstring{LerAntenasBin()}{LerAntenasBin()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Ler\+Antenas\+Bin (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{Ficheiro }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Ler\+Antenas\+Bin (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{Ficheiro,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
 
 
 
@@ -424,6 +451,25 @@ A função percorre a lista todas e imprime na telas as coordenadas onde têm os
 
 \begin{DoxyParams}{Parameters}
 {\em head} & Apontador para o início da lista ligada dos Efeitos \\
+\hline
+\end{DoxyParams}
+\Hypertarget{funcoes_8h_ae9db31ad282622a7aed13e65b2c0a394}\label{funcoes_8h_ae9db31ad282622a7aed13e65b2c0a394} 
+\index{funcoes.h@{funcoes.h}!Matriz@{Matriz}}
+\index{Matriz@{Matriz}!funcoes.h@{funcoes.h}}
+\doxysubsubsection{\texorpdfstring{Matriz()}{Matriz()}}
+{\footnotesize\ttfamily void Matriz (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{inicio,  }\item[{\mbox{\hyperlink{structEfeito}{Efeito}} \texorpdfstring{$\ast$}{*}}]{head,  }\item[{\mbox{\hyperlink{structDimensao}{Dimensao}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
+
+
+
+Função para imprimir na tela a Matriz. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inicio} & Apontador para o início da lista das Antenas \\
+\hline
+{\em head} & Apontador para o início da lista dos Efeitod \\
+\hline
+{\em matriz} & Estrutura que contém os limites da Matriz \\
 \hline
 \end{DoxyParams}
 \Hypertarget{funcoes_8h_a39aaacf1aa40a2ff4c6b3c69a4e54a9f}\label{funcoes_8h_a39aaacf1aa40a2ff4c6b3c69a4e54a9f} 

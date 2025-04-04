@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['descubrirefeito_0',['descubrirefeito',['../funcoes_8c.html#acc33300b53a4efdb3e8e716a142f5e73',1,'DescubrirEfeito(Antena *inicio):&#160;funcoes.c'],['../funcoes_8h.html#acc33300b53a4efdb3e8e716a142f5e73',1,'DescubrirEfeito(Antena *inicio):&#160;funcoes.c']]],
-  ['destroilista_1',['destroilista',['../funcoes_8c.html#a748525c7fd7531082241e0f65f39a86c',1,'DestroiLista(Antena *inicio):&#160;funcoes.c'],['../funcoes_8h.html#a748525c7fd7531082241e0f65f39a86c',1,'DestroiLista(Antena *inicio):&#160;funcoes.c']]]
+  ['descubrirefeito_0',['descubrirefeito',['../funcoes_8c.html#af7032de7f35e57f348f47418f6846303',1,'DescubrirEfeito(Antena *inicio, Dimensao *matriz):&#160;funcoes.c'],['../funcoes_8h.html#af7032de7f35e57f348f47418f6846303',1,'DescubrirEfeito(Antena *inicio, Dimensao *matriz):&#160;funcoes.c']]],
+  ['destroilistaant_1',['destroilistaant',['../funcoes_8c.html#aef2643dd179172468686d2ec843099b1',1,'DestroiListaAnt(Antena *inicio, Dimensao *matriz):&#160;funcoes.c'],['../funcoes_8h.html#aef2643dd179172468686d2ec843099b1',1,'DestroiListaAnt(Antena *inicio, Dimensao *matriz):&#160;funcoes.c']]],
+  ['destroilistaefei_2',['destroilistaefei',['../funcoes_8c.html#aa9e499232db4efcea6616bb43fd12ef4',1,'DestroiListaEfei(Efeito *head):&#160;funcoes.c'],['../funcoes_8h.html#aa9e499232db4efcea6616bb43fd12ef4',1,'DestroiListaEfei(Efeito *head):&#160;funcoes.c']]],
+  ['dimensao_3',['dimensao',['../structDimensao.html',1,'Dimensao'],['../funcoes_8h.html#a3bfcbadbb71d3f5227f3e9eabd847068',1,'Dimensao:&#160;funcoes.h']]]
 ];

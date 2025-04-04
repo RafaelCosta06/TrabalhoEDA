@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['efeito_0',['Efeito',['../funcoes_8h.html#ae6c986c696a1a0707a5432636f1c4767',1,'funcoes.h']]]
+  ['dimensao_0',['Dimensao',['../funcoes_8h.html#a3bfcbadbb71d3f5227f3e9eabd847068',1,'funcoes.h']]]
 ];
