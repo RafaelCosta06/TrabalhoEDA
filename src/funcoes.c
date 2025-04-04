@@ -155,7 +155,7 @@ Antena* RemoverAllAntenaComEfeito (Antena* inicio, Efeito* head){
  * @param inicio Apontador para o inicio da lista das Antenas
  * @return Antena* Apontador para o inicio da lista das Antenas mas já destruída
  */
-Antena* DestroiLista(Antena* inicio, Dimensao* matriz){
+Antena* DestroiListaAnt(Antena* inicio, Dimensao* matriz){
     if(inicio == NULL)return inicio;
     if(matriz != NULL){
         matriz->c = 0;
@@ -302,6 +302,25 @@ Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz){
                 }
             }
         }
+    }
+    return head;
+
+}
+
+
+
+/**
+ * @brief Função para destruir a Lista dos Efeitos
+ * 
+ * @param head Apontador para o início da lista dos Efeitos
+ * @return Efeito* Apontador para o início da lista dos Efeitos mas já vazia
+ */
+Efeito* DestroiListaEfei(Efeito* head){
+    Efeito* aux;
+    while(head != NULL){
+        aux = head;
+        head = head->next;
+        free(aux);
     }
     return head;
 

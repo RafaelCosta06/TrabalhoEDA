@@ -89,7 +89,7 @@
  * @param inicio Apontador para o inicio da lista das Antenas
  * @return Antena* Apontador para o inicio da lista das Antenas mas já destruÃ­da
  */
- Antena* DestroiLista(Antena* inicio, Dimensao* matriz);
+ Antena* DestroiListaAnt(Antena* inicio, Dimensao* matriz);
 
 #pragma endregion
 
@@ -120,6 +120,14 @@
  * @return * Efeito* Apontador para o início da lista ligada dos Efeitos já atualizada. 
  */
  Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz);
+
+ /**
+  * @brief Função para destruir a Lista dos Efeitos
+  * 
+  * @param head Apontador para o início da lista dos Efeitos
+  * @return Efeito* Apontador para o início da lista dos Efeitos mas já vazia
+  */
+ Efeito* DestroiListaEfei(Efeito* head);
 
  #pragma endregion
 

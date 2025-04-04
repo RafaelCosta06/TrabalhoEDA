@@ -60,7 +60,8 @@ int main(){
     printf("\n");
     printf("Ficheiro: %d\n", ficheiro);
 
-    Antenas = DestroiLista(Antenas, &matriz);
+    Antenas = DestroiListaAnt(Antenas, &matriz);
+    Efeitos = DestroiListaEfei(Efeitos);
     printf("\n");
     printf("Antenas depois da lista ser destruida:\n");
     ListarAntenas (Antenas);
