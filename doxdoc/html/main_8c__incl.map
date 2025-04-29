@@ -1,10 +1,13 @@
 <map id="/root/EDA/TrabalhoEDA/src/main.c" name="/root/EDA/TrabalhoEDA/src/main.c">
-<area shape="rect" id="Node000001" title="Teste das função implementadas." alt="" coords="23,5,185,45"/>
+<area shape="rect" id="Node000001" title="Teste das função implementadas." alt="" coords="48,5,211,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,67,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,47,57,84,53,81,86,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="105,167,180,192"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,45,139,153,134,154,106,46"/>
-<area shape="rect" id="Node000004" href="$funcoes_8h.html" title="Declaração das funções e das estruturas." alt="" coords="142,93,221,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="125,44,162,82,158,85,121,47"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="177,120,158,156,153,153,173,118"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,48,62,86,59,82,105,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="105,240,180,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,46,128,111,132,192,138,226,133,227,127,192,123,111,125,45"/>
+<area shape="rect" id="Node000004" href="$funcoes_8h.html" title="Declaração das funções e das estruturas." alt="" coords="142,167,221,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="138,45,175,153,170,154,133,47"/>
+<area shape="rect" id="Node000005" href="$ecra_8h.html" title="Definição das funções que apresentam informação no ecrã" alt="" coords="192,93,251,119"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="153,44,199,82,195,86,150,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="177,194,158,229,153,227,173,191"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="217,120,197,156,192,153,212,118"/>
 </map>

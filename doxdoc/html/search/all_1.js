@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['carregardoficheiro_0',['carregardoficheiro',['../funcoes_8c.html#aeb6f5f4ff4a0aebb27d944f80cff4c1d',1,'CarregarDoFicheiro(char *Ficheiro, Dimensao *matriz):&#160;funcoes.c'],['../funcoes_8h.html#aeb6f5f4ff4a0aebb27d944f80cff4c1d',1,'CarregarDoFicheiro(char *Ficheiro, Dimensao *matriz):&#160;funcoes.c']]],
-  ['criarantena_1',['criarantena',['../funcoes_8c.html#a675ac69378d7c9262e2da6e79773372e',1,'CriarAntena(int l, int c, char frequencia):&#160;funcoes.c'],['../funcoes_8h.html#a675ac69378d7c9262e2da6e79773372e',1,'CriarAntena(int l, int c, char frequencia):&#160;funcoes.c']]],
-  ['criarefeito_2',['criarefeito',['../funcoes_8c.html#a47415f842985a1986f7e454f59e1a357',1,'CriarEfeito(int l, int c):&#160;funcoes.c'],['../funcoes_8h.html#a47415f842985a1986f7e454f59e1a357',1,'CriarEfeito(int l, int c):&#160;funcoes.c']]]
+  ['carregardoficheiro_0',['carregardoficheiro',['../funcoes_8c.html#ac37fe418c97622df78159673da26474d',1,'CarregarDoFicheiro(char *Ficheiro, Dimensao *matriz, bool *verificar):&#160;funcoes.c'],['../funcoes_8h.html#ac37fe418c97622df78159673da26474d',1,'CarregarDoFicheiro(char *Ficheiro, Dimensao *matriz, bool *verificar):&#160;funcoes.c']]],
+  ['criarantena_1',['criarantena',['../funcoes_8c.html#a75eaf3ca1a6b8ddd5273517b6e12eae3',1,'CriarAntena(int l, int c, char frequencia, bool *verificar):&#160;funcoes.c'],['../funcoes_8h.html#a75eaf3ca1a6b8ddd5273517b6e12eae3',1,'CriarAntena(int l, int c, char frequencia, bool *verificar):&#160;funcoes.c']]],
+  ['criarefeito_2',['criarefeito',['../funcoes_8c.html#adfaa8fdd056efd0db81ab71d88d7af6e',1,'CriarEfeito(int l, int c, bool *verificar):&#160;funcoes.c'],['../funcoes_8h.html#adfaa8fdd056efd0db81ab71d88d7af6e',1,'CriarEfeito(int l, int c, bool *verificar):&#160;funcoes.c']]]
 ];
