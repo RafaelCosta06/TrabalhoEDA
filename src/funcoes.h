@@ -51,18 +51,20 @@
  * @param l Linha onde queremos adicionar a Antena
  * @param c Coluna onde queremos adicionar a Antena
  * @param frequencia Frequencia que a Antena irá ter
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Antena Criada
  */
- Antena* CriarAntena(int l, int c, char frequencia);
+ Antena* CriarAntena(int l, int c, char frequencia, bool* verificar);
 
 /**
  * @brief Insere uma nova antena na lista das Antenas de forma ordenada
  * 
  * @param inicio Apontador para o Inicio da lista ligada
  * @param nova Apontador para a nova Antena a adicionar
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o ini­cio da lista já atualizada
  */
- Antena* InserirAntena(Antena* inicio, Antena* nova, Dimensao* matriz);
+ Antena* InserirAntena(Antena* inicio, Antena* nova, Dimensao* matriz, bool* verificar);
 
 /**
  * @brief Função para remover uma Antena
@@ -70,26 +72,29 @@
  * @param inicio Apontador para o iní­cio da lista
  * @param l Linha onde se encontra a antena a remover
  * @param c Coluna onde se encontra a antena a remover
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o ini­cio da lista já atualizada
  */
- Antena* RemoverAntena(Antena* inicio, int l, int c);
+ Antena* RemoverAntena(Antena* inicio, int l, int c, bool* verificar);
 
 /**
  * @brief Remove todas as Antenas que estejam a coincidir com a localização de um efeito 
  * 
  * @param inicio Apontador para o inicio da lista das Antenas
  * @param head Apontador para o inicio da lista dos Efeitos
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o inicio da lista das Antenas já atualizada
  */
- Antena* RemoverAllAntenaComEfeito (Antena* inicio, Efeito* head);
+ Antena* RemoverAllAntenaComEfeito (Antena* inicio, Efeito* head, bool* verificar);
 
 /**
  * @brief Destroi toda a lista das Antenas
  * 
  * @param inicio Apontador para o inicio da lista das Antenas
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o inicio da lista das Antenas mas já destruÃ­da
  */
- Antena* DestroiListaAnt(Antena* inicio, Dimensao* matriz);
+ Antena* DestroiListaAnt(Antena* inicio, Dimensao* matriz, bool* verificar);
 
 #pragma endregion
 
@@ -99,64 +104,42 @@
  * 
  * @param l Linha onde queremos adicionar o Efeito
  * @param c Coluna onde queremos adicionar o Efeito
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Efeito* Efeito criado
  */
- Efeito* CriarEfeito(int l, int c);
+ Efeito* CriarEfeito(int l, int c, bool* verificar);
 
 /**
  * @brief Insere o novo Efeito na lista dos Efeitos de forma ordenada pela sua coluna "c" e linha "l" 
  * 
  * @param head Apontador para o início da lista ligada
  * @param novo Apontador para o novo Efeito a adicionar
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Efeito* Apontador para o início da lista já atualizada
  */
- Efeito* InserirEfeito(Efeito* head, Efeito* novo, Dimensao* matriz);
+ Efeito* InserirEfeito(Efeito* head, Efeito* novo, Dimensao* matriz, bool* verificar);
 
 /**
  * @brief Função para descubrir a localização dos Efeitos
  * 
  * @param inicio Apontador para o início da lista ligada das Antenas. 
  * @param head Apontador para o início da lista ligada dos Efeitos. 
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return * Efeito* Apontador para o início da lista ligada dos Efeitos já atualizada. 
  */
- Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz);
+ Efeito* DescubrirEfeito(Antena* inicio, Dimensao* matriz, bool* verificar);
 
  /**
   * @brief Função para destruir a Lista dos Efeitos
   * 
   * @param head Apontador para o início da lista dos Efeitos
+  * @param verificar Auxiliar para verificar se executou corretamente
   * @return Efeito* Apontador para o início da lista dos Efeitos mas já vazia
   */
- Efeito* DestroiListaEfei(Efeito* head);
+ Efeito* DestroiListaEfei(Efeito* head, bool* verificar);
 
  #pragma endregion
 
- #pragma region Listar na tela
-
-/**
- * @brief Função para apresentar na tela as Antenas de forma tabular
- * 
- * @param inicio Apontador para o início da lista ligada das Antenas
- */
- void ListarAntenas(Antena* inicio);
-
-/**
- * @brief Função para apresentar na tela Efeitos de forma tabular
- * 
- * @param head Apontador para o início da lista ligada dos Efeitos
- */
- void ListarEfeitos(Efeito* head);
-
- /**
-  * @brief Função para imprimir na tela a Matriz
-  * 
-  * @param inicio Apontador para o início da lista das Antenas
-  * @param head Apontador para o início da lista dos Efeitod
-  * @param matriz Estrutura que contém os limites da Matriz
-  */
- void Matriz (Antena* inicio, Efeito* head, Dimensao* matriz);
-
- #pragma endregion
 
  #pragma region Ficheiros
 
@@ -164,9 +147,10 @@
  * @brief Função para ler de um ficeheiro externo '.txt' a matriz que contém as Antenas.
  * 
  * @param Ficheiro Ficheiro que contém a matriz
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o iní­cio da lista já atualizada
  */
- Antena* CarregarDoFicheiro(char* Ficheiro, Dimensao* matriz);
+ Antena* CarregarDoFicheiro(char* Ficheiro, Dimensao* matriz, bool* verificar);
 
 /**
  * @brief Função para guardar as Antenas num ficheiro binário
@@ -181,8 +165,9 @@
  * @brief Ficheiro para ler as Antenas atraváves de um ficheiro binário
  * 
  * @param Ficheiro Ficheiro Binário que contém as Antenas
+ * @param verificar Auxiliar para verificar se executou corretamente
  * @return Antena* Apontador para o início da lista ligadas das Antenas
  */
- Antena* LerAntenasBin (char* Ficheiro, Dimensao* matriz);
+ Antena* LerAntenasBin (char* Ficheiro, Dimensao* matriz, bool* verificar);
 
  #pragma endregion

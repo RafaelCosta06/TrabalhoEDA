@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "funcoes.h"
+#include "ecra.h"
 
 /**
  * @brief Função principal do programa, que chama e testa todas as funções criadas
@@ -23,56 +24,96 @@ int main(){
     Antena* aux;
     bool ficheiro;
     Dimensao matriz = {0,0};
+    bool verificar1;
+    bool verificar2;
     
-    printf("\n");
-    printf("MATRIZ CARREGADA DO FICHEIRO:\n");
-    Antenas = CarregarDoFicheiro ("matriz.txt", &matriz);
-    Matriz (Antenas, Efeitos, &matriz);
+    printf("CARREGAR DO FICHEIRO\n");
+    Antenas = CarregarDoFicheiro ("matriz.txt", &matriz,&verificar1);
+    if(verificar1){
+        printf("Matriz Carregada do Ficheiro com sucesso!\n");
+        Matriz (Antenas, Efeitos, &matriz);
+    }else {
+        printf("Erro ao carregar a matriz do Ficheiro\n");
+    }
 
-    printf("\n");
-    printf("INSERIDA UMA ANTENA:\n");
-    aux = CriarAntena(5,5,'B');
-    Antenas = InserirAntena(Antenas, aux, &matriz);
-    Matriz (Antenas, Efeitos, &matriz);
+    printf("INSERIR ANTENA!\n");
+    aux = CriarAntena(5,5,'B', &verificar1);
+    if(verificar1){
+        Antenas = InserirAntena(Antenas, aux, &matriz, &verificar2);
+        if(verificar2){
+            printf("Antenas Inserida com sucesso!\n");
+            Matriz (Antenas, Efeitos, &matriz);
+        } else{
+            printf("Erro ao Inserir a Antena!\n");
+        }
+    } else{
+        printf("Erro ao Criar Antena!\n");
+    }
 
-    printf("\n");
-    printf("ANTENA REMOVIDA:\n");
-    Antenas = RemoverAntena(Antenas,5,5);
-    Matriz (Antenas, Efeitos, &matriz);
+    printf("REMOVER ANTENA!\n");
+    Antenas = RemoverAntena(Antenas,5,5, &verificar1);
+    if(verificar1){
+        printf("Antena Removida com Sucesso!\n");
+        Matriz (Antenas, Efeitos, &matriz);
+    }else {
+        printf("Erro ao remover Antena!\n");
+    }
+    
+   printf("CALCULAR EFEITOS!\n");
+    Efeitos = DescubrirEfeito(Antenas, &matriz, &verificar1);
+    if(verificar1){
+        printf("Efeitos encontrados!\n");
+        Matriz (Antenas, Efeitos, &matriz);
+    }else {
+        printf("Efeitos não encontrados!\n");
+    }
 
-    printf("\n");
-    printf("CALCULAR EFEITOS:\n");
-    Efeitos = DescubrirEfeito(Antenas, &matriz);
-    ListarAntenas (Antenas);
-    ListarEfeitos (Efeitos);
-    Matriz (Antenas, Efeitos, &matriz);
-
-    printf("\n");
     printf("REMOVER ANTENAS EM CONFLITO E CALCULAR NOVO EFEITO\n");
-    Antenas = RemoverAllAntenaComEfeito(Antenas, Efeitos);
-    Efeitos = DescubrirEfeito (Antenas, &matriz);
-    ListarAntenas (Antenas);
-    ListarEfeitos (Efeitos);
-    Matriz (Antenas, Efeitos, &matriz);
+    Antenas = RemoverAllAntenaComEfeito(Antenas, Efeitos, &verificar1);
+    if(verificar1){
+        printf("Antenas em conflito removidas!\n");
+    }else {
+        printf("Nenhuma antena removida!\n");
+    }
+
+    Efeitos = DescubrirEfeito (Antenas, &matriz, &verificar1);
+    if(verificar1){
+        printf("Novos Efeitos Encontrados!\n");
+        Matriz (Antenas, Efeitos, &matriz);
+    }else {
+        printf("Erro ao calcular efeitos!\n");
+    }
     
-
+    
+    printf("GUARDAR DADOS EM FICHEIROS\n");
     ficheiro = GuardarAntenasBin(Antenas, "Antenas.bin");
-    printf("\n");
-    printf("Ficheiro: %d\n", ficheiro);
+    
+    if(ficheiro){
+        printf("Dados guardados com sucesso!\n");
+    }else {
+        printf("Erro ao guardar dados no ficheiro!\n");
+    }
 
-    Antenas = DestroiListaAnt(Antenas, &matriz);
-    Efeitos = DestroiListaEfei(Efeitos);
-    printf("\n");
-    printf("Antenas depois da lista ser destruida:\n");
-    ListarAntenas (Antenas);
+    printf("DESTRUIR LISTAS\n");
+    Antenas = DestroiListaAnt(Antenas, &matriz, &verificar1);
+    if(verificar1){
+        printf("Lista das Antenas Destruida!\n");
+    }else {
+        printf("Erro ao destruir lista das Antenas!\n");
+    }
+    Efeitos = DestroiListaEfei(Efeitos, &verificar1);
+    if(verificar1){
+        printf("Lista dos Efeiros Destruida!\n");
+    }else {
+        printf("Erro ao destruir lista dos Efeitos!\n");
+    }
 
-    Antenas = LerAntenasBin("Antenas.bin", &matriz);
-    printf("\n");
-    printf("Antenas depois de serem lidas do ficheiro:\n");
-    Matriz (Antenas, Efeitos, &matriz);
-    ListarAntenas(Antenas);
-
-
+    printf("LER DE UM FICHEIRO BIN\n");
+    Antenas = LerAntenasBin("Antenas.bin", &matriz, &verificar1);
+    if(verificar1){
+        printf("Lido com sucesso!\n");
+        Matriz (Antenas, Efeitos, &matriz);
+    }
 
     return 0;
     
