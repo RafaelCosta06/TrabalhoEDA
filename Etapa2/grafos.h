@@ -65,6 +65,7 @@
  * @return false Caso essa antena não pertença á lista dos vertices
  */
  bool ExisteAntena (Antena* inicio, Antena* antena);
+ 
 
  Antena* RemoverAntena (Antena* inicio, int l, int c, bool* verificar);
 
@@ -74,7 +75,11 @@
 
  Adjacencia* CriarAdj (int l, int c, bool* verificar);
 
- //Adjacencia* InsereAdj (Adjacencia* head)
+bool InsereAdj (Antena* vertice, Adjacencia* nova);
+
+bool CalcularAdj (Antena* inicio);
+
+bool EliminarAllAdj (Antena* inicio);
 
 
 #pragma endregion
@@ -83,6 +88,14 @@
 
 Antena* CarregarFicheiro(char* NomeFicheiro, bool* verificar);
 
+bool GuardarFicheiroBin (Antena* inicio, char* NomeFicheiro);
+
+Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar);
 
 
 #pragma endregion
+
+
+
+
+void ImprimirAdjacencias(Antena* inicio);

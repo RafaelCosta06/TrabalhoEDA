@@ -125,6 +125,19 @@
     return false;  
  }
 
+ /**
+  * @brief Função para remover Antena da lista dos vertices
+  * 
+  * Verifica se a lista dos vertices não está vazio.
+  * Com a ajuda de dois auxiliares, encontra a posição onde está a antena a romver.
+  * Elimina todas as adjacencias desse vertice
+  * 
+  * @param inicio Apontador para a lista dos vertices
+  * @param l Linha da Antena a remover
+  * @param c Coluna da Antena a remover
+  * @param verificar Auxiliar para verificar se executou corretamente
+  * @return Antena* Lista dos vertices sem a Antena já.
+  */
  Antena* RemoverAntena (Antena* inicio, int l, int c, bool* verificar){
     *verificar = false;
     if(inicio == NULL) return NULL;
@@ -138,23 +151,25 @@
     }
     if(aux == NULL)return inicio; // Antena não encontrada
 
+    // Se entrar aqui é porque tem antena e etá na posiçao de aux
     Adjacencia* auxAdj= aux->Adj;  
     Adjacencia* aux2Adj = auxAdj;
 
-    while(auxAdj != NULL){  // Remover todas as adjacencias do vertice em questão
+    while(auxAdj != NULL){ //Eliminar adjacencias do vertice
         aux2Adj = auxAdj;
         auxAdj = auxAdj->next;
         free(aux2Adj);
     }
+
     if(aux == aux2){
-        inicio= aux->next;
+        inicio= aux->next;   // Eliminar o vertice caso esteja no incio
         free(aux);
         *verificar = true;
         return inicio;
     }
 
     aux2->next = aux->next;
-    free (aux);
+    free (aux);                //Elinar o vertice 
     *verificar = true;
     return inicio;
  }
@@ -177,13 +192,62 @@
     *verificar = true;
     return aux;
  }
+
+bool InsereAdj (Antena* vertice, Adjacencia* nova){
+    if (vertice == NULL) return false;
+    if(nova == NULL) return false;
+
+    
+    Adjacencia* aux = vertice->Adj;                   
+    while(aux != NULL){
+        if(aux->l == nova->l && aux->c == nova->c)return false;   // verificar se ja existe a adjacencia nesse vertice
+        aux = aux->next;
+    }
+
+    if(vertice->Adj == NULL){      // Insere a adjacencia no inicio, caso nao haja nenhuma para esse vertice
+        vertice->Adj = nova;
+    }else{
+        aux = vertice->Adj;
+        while(aux->next != NULL){  // Caso ja haja adjacencias nesse vertice, percorre-as até ao fm e insere no fim.
+            aux = aux->next;
+        }
+        aux->next = nova;
+    }
+    return true;
+}
+
+bool CalcularAdj (Antena* inicio){
+    bool sucesso;
+
+    for(Antena* aux = inicio ; aux != NULL ; aux = aux->next){            
+        for(Antena* aux2 = inicio ; aux2 != NULL ; aux2 = aux2->next){   // Comparar todas as atenas com todas(começando sempre o aux2 do inicio)
+            if(aux->frequencia == aux2->frequencia){      //Quando a frequencia for igual
+                if(aux != aux2){                          // e nao forem a mesma antena  
+                    Adjacencia* nova = CriarAdj(aux2->l, aux2->c, &sucesso);
+                    if(sucesso == false)return false;
+                    sucesso = InsereAdj(aux, nova);
+                    if(sucesso == false)return false;
+                }
+            }
+        }
+    }
+    return true;
+}
  
- //ACABAR
+bool EliminarAllAdj (Antena* inicio){
+    for(Antena* vertice = inicio; vertice != NULL ; vertice = vertice->next){
+        Adjacencia* aux = vertice->Adj;
+        Adjacencia* aux2 = aux;
 
-
-
-
-
+        while(aux != NULL){
+            aux2=aux;
+            aux=aux->next;
+            free(aux2);
+        }
+        vertice->Adj = NULL;
+    }
+    return true;
+}
 
 
  #pragma endregion
@@ -204,14 +268,163 @@
     int l=0;
     char caracter;
     bool sucesso;
- }
 
  while ((caracter = fgetc(ficheiro)) != EOF){
     if(caracter >= 'A' && caracter <= 'Z'){
-        Antena* nova = CriarAntena(caarcter, l, c, &sucesso);
-        inicio = InserirAntena()
+        Antena* nova = CriarAntena(caracter, l, c, &sucesso);
+        if(sucesso == false){
+            fclose(ficheiro);
+            return NULL;
+        }
+        
+        inicio = InserirAntena(inicio, nova, &sucesso);
+         if(sucesso == false){
+            fclose(ficheiro);
+            return NULL;
+        }
+
+        c++;
+    }else if( caracter == '.'){
+        c++;
+    }else if(caracter == '\n'){
+        c=0;
+        l++;
     }
+  }
+  fclose(ficheiro);
+  *verificar= true;
+  return inicio;
  }
+
+bool GuardarFicheiroBin (Antena* inicio, char* NomeFicheiro){
+    FILE* ficheiro = fopen(NomeFicheiro, "wb");
+    if(ficheiro == NULL)return false;
+
+    int totalvertices=0;
+
+    for(Antena* aux= inicio ; aux != NULL ; aux = aux->next){
+        totalvertices ++;
+    }
+
+    fwrite(&totalvertices, sizeof(int), 1, ficheiro);
+
+    for(Antena* aux = inicio ; aux != NULL ; aux = aux->next){
+        fwrite(&(aux->l), sizeof(int), 1, ficheiro);
+        fwrite(&(aux->c), sizeof(int), 1, ficheiro);
+        fwrite(&(aux->frequencia), sizeof(char), 1, ficheiro);
+
+        int totalAdj=0;
+
+        for(Adjacencia* adj = aux->Adj; adj != NULL ; adj = adj->next){
+            totalAdj ++;
+        }
+
+        fwrite(&totalAdj, sizeof(int), 1, ficheiro);
+
+        for(Adjacencia* adj = aux->Adj ; adj != NULL ; adj = adj->next){
+            fwrite(&(adj->l), sizeof(int), 1, ficheiro);
+            fwrite(&(adj->c), sizeof(int), 1, ficheiro);
+        }
+    }
+
+    fclose(ficheiro);
+    return true;
+}
+
+
+Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar){
+    *verificar = false;
+    FILE* ficheiro = fopen(NomeFicheiro, "rb");
+    if(ficheiro == NULL)return NULL;
+
+    Antena* inicio = NULL;
+    bool sucesso;
+    int totalvertices=0;
+    int totalAdj=0;
+    char frequencia;
+    int l, c;
+    int adjL, adjC;
+
+    fread(&totalvertices, sizeof(int), 1, ficheiro);
+
+    for(int i=0 ; i<totalvertices; i++){
+        fread(&l, sizeof(int), 1, ficheiro);
+        fread(&c, sizeof(int), 1, ficheiro);
+        fread(&frequencia, sizeof(char), 1, ficheiro);
+
+        Antena* novoVert = CriarAntena(frequencia, l,c,&sucesso);
+        if(sucesso == false){
+            fclose(ficheiro);
+            return NULL;
+        }
+        inicio = InserirAntena(inicio, novoVert, &sucesso);
+        if(sucesso == false){
+            fclose(ficheiro);
+            return NULL;
+        }
+             
+        fread(&totalAdj, sizeof(int), 1, ficheiro);
+
+        for(int j=0 ; j<totalAdj ; j++){
+            fread(&adjL, sizeof(int), 1, ficheiro);
+            fread(&adjC, sizeof(int), 1, ficheiro);
+            Adjacencia* novaAdj = CriarAdj(adjL, adjC, &sucesso);
+            if(sucesso == false){
+                printf("Erro ao criar Adj\n");
+            fclose(ficheiro);
+            return NULL;
+        }
+            sucesso = InsereAdj(novoVert, novaAdj);  
+            if(sucesso == false){
+                printf("Erro ao inserir Adj\n");
+            fclose(ficheiro);
+            return NULL;
+        }      
+        }
+
+    }
+    fclose(ficheiro);
+    *verificar = true;
+    return inicio;
+}
+
 
 
  #pragma endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ void ImprimirAdjacencias(Antena* inicio) {
+    for (Antena* aux = inicio; aux != NULL; aux = aux->next) {
+        printf("Antena (%d, %d) - Frequência: %c\n", aux->l, aux->c, aux->frequencia);
+        printf("Adjacências: ");
+        for (Adjacencia* adj = aux->Adj; adj != NULL; adj = adj->next) {
+            printf("(%d, %d) ", adj->l, adj->c);
+        }
+        printf("\n");
+    }
+}
