@@ -42,6 +42,7 @@
     aux->l = l;
     aux->Adj = NULL;
     aux->next = NULL;
+    aux->visitado = false;
     *verificar = true;
     return aux;
  }
@@ -130,7 +131,8 @@
   * 
   * Verifica se a lista dos vertices não está vazio.
   * Com a ajuda de dois auxiliares, encontra a posição onde está a antena a romver.
-  * Elimina todas as adjacencias desse vertice
+  * Elimina todas as adjacencias desse vertice.
+  * Por fim remove a Antena.
   * 
   * @param inicio Apontador para a lista dos vertices
   * @param l Linha da Antena a remover
@@ -174,10 +176,43 @@
     return inicio;
  }
 
+ /**
+  * @brief Função que romove todos os vertices (Antenas)
+  * 
+  * A função percorre toda a lista das antenas e invoca a função RemoverAntena, que remove a antena escolhida.
+  * 
+  * @param inicio Apontador para o inicio da lista dos vértices
+  * @return Antena* Apontador para o inicio da lista dos vertices, a NULL, porque removeu todas as antenas
+  */
+ Antena* RemoveTodasAntenas(Antena* inicio){
+    Antena* aux = inicio;
+    bool verificar;
+
+    while(inicio != NULL){
+        int l = aux->l;
+        int c = aux->c;
+        inicio = RemoverAntena(inicio, l,c, &verificar);  // devolve o incio da lista sem a Antena
+    }
+    return NULL;
+ }
+
  #pragma endregion
 
  #pragma region Adjacencias
 
+
+/**
+ * @brief Cria uma nova adjacencia para uma antena, com base nas coordenadas fornecidas
+ * 
+ * A função aloca memória para uma noca estrutura do tipo Adjacencia,
+ * preenchendo as coordenadas com os dados fornecidos.
+ * Os apontadores são inicializados como NULL.
+ * 
+ * @param l Linha da adjacencia a adicionar
+ * @param c Linha da coluna a adicionar
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return Adjacencia* Apontador para a adjacencia criada
+ */
  Adjacencia* CriarAdj (int l, int c, bool* verificar){
     Adjacencia* aux;
 
@@ -193,6 +228,18 @@
     return aux;
  }
 
+ /**
+  * @brief Função insere a adjacencia no vertice pretendido
+  * 
+  * Função verifica se o vertice e a adjacencia a inserir são validos.
+  * Após verifica se a adjacencia já existe.
+  * Por ultimo insere a adjacencia no vertice pretendido.
+  * 
+  * @param vertice Apontador para o vertice que deseja inserir a adjacencia.
+  * @param nova Apontador para a adjacencia que deseja inserir.
+  * @return true se adicionar a adjacencia com sucesso
+  * @return false se ocorrer algum erro na inserção
+  */
 bool InsereAdj (Antena* vertice, Adjacencia* nova){
     if (vertice == NULL) return false;
     if(nova == NULL) return false;
@@ -216,6 +263,16 @@ bool InsereAdj (Antena* vertice, Adjacencia* nova){
     return true;
 }
 
+/**
+ * @brief A função calcula todas as adjacencias
+ * 
+ * Através de dois ciclos, a função comprara todas as antenas com todas.
+ * Caso a frequencia seja igual, e as antenas sejam diferentes, a adjacencia é criada e inserida.
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return true Caso calcule todas as adjacencias com sucesso
+ * @return false Caso haja um erro no calculo das adjacencias
+ */
 bool CalcularAdj (Antena* inicio){
     bool sucesso;
 
@@ -233,7 +290,16 @@ bool CalcularAdj (Antena* inicio){
     }
     return true;
 }
- 
+
+/**
+ * @brief Função elimina todas as Adjacencias
+ * 
+ * A função percorre todos os vertices e para cada vertice elimina todas as suas adjacencias.
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return true Caso Remova todas com sucesso
+ * @return false Caso haja algum erro a devolver
+ */
 bool EliminarAllAdj (Antena* inicio){
     for(Antena* vertice = inicio; vertice != NULL ; vertice = vertice->next){
         Adjacencia* aux = vertice->Adj;
@@ -254,6 +320,16 @@ bool EliminarAllAdj (Antena* inicio){
 
  #pragma region Ficheiro
 
+ /**
+  * @brief Carrega de um ficheiro.txt todos os vertices do grafo.
+  * 
+  * A função lê um ficheiro caracter a caracter, onde tiver uma letra, a mesma é inserida na lista das Antenas
+  * com a respetiva coordenada, linha e coluna.
+  * 
+  * @param Ficheiro Ficheiro.txt que contem a matriz
+  * @param verificar Auxiliar para verificar se executou corretamente
+  * @return Antena* Apontador para o inicio da lista das Antenas
+  */
  Antena* CarregarFicheiro(char* Ficheiro, bool* verificar){
     *verificar = false;
 
@@ -296,6 +372,32 @@ bool EliminarAllAdj (Antena* inicio){
   return inicio;
  }
 
+
+
+ /**
+  * @brief Guarda o grafo de antenas num ficheiro binário.
+  * 
+  * Esta função percorre a lista ligada de antenas e escreve, em formato binário, todos os vértices (antenas)
+  * e suas respetivas adjacências num ficheiro especificado. Cada antena é identificada pelas suas coordenadas
+  * (linha e coluna) e pela sua frequência (caracter). Para cada antena, também são guardadas as coordenadas
+  * das antenas adjacentes.
+  *
+  * O formato do ficheiro binário é o seguinte:
+  * - int: número total de antenas (vértices)
+  * Para cada antena:
+  *   - int: linha
+  *   - int: coluna
+  *   - char: frequência
+  *   - int: número de adjacências
+  *   - Para cada adjacência:
+  *       - int: linha da antena adjacente
+  *       - int: coluna da antena adjacente
+  * 
+  * @param inicio  Ponteiro para o início da lista de antenas.
+  * @param NomeFicheiro Ficheiro binario onde será guardado
+  * @return true se o ficheiro foi guardado com sucesso
+  * @return false se ocorreu erro
+  */
 bool GuardarFicheiroBin (Antena* inicio, char* NomeFicheiro){
     FILE* ficheiro = fopen(NomeFicheiro, "wb");
     if(ficheiro == NULL)return false;
@@ -332,6 +434,24 @@ bool GuardarFicheiroBin (Antena* inicio, char* NomeFicheiro){
 }
 
 
+/**
+ * @brief Carrega um grafo de antenas a partir de um ficheiro binário.
+ * 
+ * O ficheiro deve conter a seguinte estrutura binária:
+ * - int: número total de antenas (vértices)
+ * Para cada antena:
+ *   - int: linha (l)
+ *   - int: coluna (c)
+ *   - char: frequência
+ *   - int: número de adjacências
+ *   - Para cada adjacência:
+ *       - int: linha da antena adjacente
+ *       - int: coluna da antena adjacente
+ *
+ * @param NomeFicheiro Ficheiro binario onde será guardado
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return Antena* Apontador para o inicio da lista dos vertices
+ */
 Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar){
     *verificar = false;
     FILE* ficheiro = fopen(NomeFicheiro, "rb");
