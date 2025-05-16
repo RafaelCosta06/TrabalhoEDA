@@ -12,11 +12,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "grafos.h"
+#include "ecra.h"
 
 int main(){
     bool verificar;
     Antena* inicio = NULL;
     Antena* head= NULL;
+    AntenasVisitadas* visitadas;
 
     inicio = CarregarFicheiro("matriz.txt", &verificar);
     if(verificar == true){
@@ -64,6 +66,9 @@ int main(){
         printf("Erro ao guardar\n");
     }
 
+
+
+
     head = CarregarFicheiroBin("matriz.bin", &verificar);
      if(verificar){
         printf("Carregado com sucesso!!\n");
@@ -71,12 +76,26 @@ int main(){
         printf("Erro ao carregar!\n");
     }
 
-ImprimirAdjacencias(head);
+    ImprimirAdjacencias(head);
 
 
+printf("Travessia através do vertice (3,0)\n");
+    visitadas = IniciarTravProfu(head, 3,0);
+    if(visitadas == NULL){
+        printf("Erro!!!");
+    }else{
+        ImprimirVisitadas(visitadas);
+    }
 
+printf("Travessia Completa!\n");
+visitadas = NULL;
 
-
+visitadas = TravessiaCompleta(head);
+    if(visitadas == NULL){
+        printf("Erro!!!");
+    }else{
+        ImprimirVisitadas(visitadas);
+    }
 
 
 

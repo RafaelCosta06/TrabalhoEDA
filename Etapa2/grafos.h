@@ -24,10 +24,16 @@
  typedef struct Antena{
     char frequencia;
     int l,c;
-    struct Antena * next;        // falta meter visitado
+    struct Antena * next;        
     struct Adjacencia * Adj;
     bool visitado;
  }Antena;
+
+ typedef struct AntenasVisitadas{
+    int l;
+    int c;
+    struct AntenasVisitadas* next;
+ }AntenasVisitadas;
 
  #pragma endregion
 
@@ -173,6 +179,99 @@ Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar);
 
 
 #pragma endregion
+
+#pragma region Visitados
+
+/**
+ * @brief Função para cria um AntenasVisitado
+ * 
+ * A função aloca memoria para uma estrutura do tipo AntenasVisitado 
+ * e passa as coordenadas passadas por parametro para a struct.
+ * Coloca o apontador a NULL.
+ * 
+ * @param l Linha da Antena Visitada
+ * @param c Coluna da Antena visitada
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return AntenasVisitadas* Apontador para uma AntenaVisitada criada
+ */
+AntenasVisitadas* CriarVisitado (int l, int c, bool* verificar);
+
+/**
+ * @brief Insere uma AntenaVisitada na lista de Antenas Visitadas
+ * 
+ * @param inicio Apontador para o inicio da lista das antenas visitadas
+ * @param nova Apontador para a antena visitada a inserir
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return AntenasVisitadas* Apontador para a inicio da lista das Antenas Visitadas
+ */
+AntenasVisitadas* InserirVisitadas(AntenasVisitadas* inicio, AntenasVisitadas* nova, bool* verificar);
+
+
+/**
+ * @brief Função para limpar o parametro visitado das Antenas
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return true Caso troque todos os parametros para false
+ * @return false caso aconteça algum erro
+ */
+bool LimparVisitado (Antena* inicio);
+
+
+#pragma endregion
+
+#pragma region Travessia
+
+/**
+ * @brief Inicio de uma travessia em profundidade
+ * 
+ * Esta função limpa os marcadores de visita de todas as antenas no grafo e inicia
+ * uma travessia em profundidade a partir da antena localizada nas coordenadas (l, c).
+ * As antenas visitadas são armazenadas numa lista ligada "AntenasVisitadas".
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @param l linha da Antena de partida
+ * @param c Coluna da Antena de partida
+ * @return AntenasVisitadas* Apontador para o inicio da lista das Antenas visitadas
+ */
+AntenasVisitadas* IniciarTravProfu(Antena* inicio, int l, int c);
+
+/**
+ * @brief Travessia do grafo em profundidade
+ * 
+ * 
+ * @param vertice Apontador para um vertice
+ * @param inicio Apontador para a lista das Antenas
+ * @param visitadas Apontador para a lista das Antenas Visitadas
+ * @return AntenasVisitadas* Apontador para uma lista que contem todas as Antenas Visitadas
+ */
+AntenasVisitadas* TravProfu (Antena* vertice,Antena* inicio, AntenasVisitadas* visitadas);
+
+/**
+ * @brief Função que realiza a travessia completa
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return AntenasVisitadas* Apontador para o inicio da listas das Antenas Visitadas
+ */
+AntenasVisitadas* TravessiaCompleta(Antena* inicio);
+
+#pragma endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -490,13 +490,11 @@ Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar){
             fread(&adjC, sizeof(int), 1, ficheiro);
             Adjacencia* novaAdj = CriarAdj(adjL, adjC, &sucesso);
             if(sucesso == false){
-                printf("Erro ao criar Adj\n");
             fclose(ficheiro);
             return NULL;
         }
             sucesso = InsereAdj(novoVert, novaAdj);  
             if(sucesso == false){
-                printf("Erro ao inserir Adj\n");
             fclose(ficheiro);
             return NULL;
         }      
@@ -512,39 +510,165 @@ Antena* CarregarFicheiroBin (char* NomeFicheiro, bool* verificar){
 
  #pragma endregion
 
+ #pragma region Visitados
 
 
+/**
+ * @brief Função para cria um AntenasVisitado
+ * 
+ * A função aloca memoria para uma estrutura do tipo AntenasVisitado 
+ * e passa as coordenadas passadas por parametro para a struct.
+ * Coloca o apontador a NULL.
+ * 
+ * @param l Linha da Antena Visitada
+ * @param c Coluna da Antena visitada
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return AntenasVisitadas* Apontador para uma AntenaVisitada criada
+ */
+AntenasVisitadas* CriarVisitado (int l, int c, bool* verificar){
+    *verificar=false;
+    AntenasVisitadas* nova;
 
+    nova =(AntenasVisitadas*)malloc(sizeof(AntenasVisitadas));
+    if(nova == NULL)return NULL;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- void ImprimirAdjacencias(Antena* inicio) {
-    for (Antena* aux = inicio; aux != NULL; aux = aux->next) {
-        printf("Antena (%d, %d) - Frequência: %c\n", aux->l, aux->c, aux->frequencia);
-        printf("Adjacências: ");
-        for (Adjacencia* adj = aux->Adj; adj != NULL; adj = adj->next) {
-            printf("(%d, %d) ", adj->l, adj->c);
-        }
-        printf("\n");
-    }
+    nova->l = l;
+    nova->c = c;
+    nova->next = NULL;
+    *verificar = true;
+    return nova;
 }
+
+/**
+ * @brief Insere uma AntenaVisitada na lista de Antenas Visitadas
+ * 
+ * @param inicio Apontador para o inicio da lista das antenas visitadas
+ * @param nova Apontador para a antena visitada a inserir
+ * @param verificar Auxiliar para verificar se executou corretamente
+ * @return AntenasVisitadas* Apontador para a inicio da lista das Antenas Visitadas
+ */
+AntenasVisitadas* InserirVisitadas(AntenasVisitadas* inicio, AntenasVisitadas* nova, bool* verificar){
+    *verificar = false;
+
+    if(nova == NULL)return inicio;
+    if(inicio == NULL){
+        *verificar = true;
+        return nova;  // nova passa a ser o 1º elemento de inicio
+    }
+
+    AntenasVisitadas* aux = inicio;
+
+    while(aux->next != NULL){
+        aux = aux->next;
+    }
+
+    aux->next = nova;
+    *verificar = true;
+    return inicio;
+    
+}
+
+/**
+ * @brief Função para limpar o parametro visitado das Antenas
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return true Caso troque todos os parametros para false
+ * @return false caso aconteça algum erro
+ */
+bool LimparVisitado (Antena* inicio){
+    Antena* aux = inicio;
+
+    while(aux != NULL){
+        aux->visitado=false;
+        aux = aux->next;
+    }
+    return true;
+ }
+ #pragma endregion
+
+ #pragma region Travessia
+
+/**
+ * @brief Inicio de uma travessia em profundidade
+ * 
+ * Esta função limpa os marcadores de visita de todas as antenas no grafo e inicia
+ * uma travessia em profundidade a partir da antena localizada nas coordenadas (l, c).
+ * As antenas visitadas são armazenadas numa lista ligada "AntenasVisitadas".
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @param l linha da Antena de partida
+ * @param c Coluna da Antena de partida
+ * @return AntenasVisitadas* Apontador para o inicio da lista das Antenas visitadas
+ */
+ AntenasVisitadas* IniciarTravProfu(Antena* inicio, int l, int c){
+    bool sucesso;
+    sucesso = LimparVisitado(inicio);
+    if(sucesso == false)return NULL;
+
+    AntenasVisitadas* visitadas = NULL;
+
+    for(Antena* aux = inicio ; aux != NULL ; aux = aux->next){
+        if(aux->l == l && aux->c == c){
+            visitadas = TravProfu(aux, inicio, visitadas);
+            return visitadas;
+        }
+    }
+    return NULL;
+ }
+
+/**
+ * @brief Travessia do grafo em profundidade
+ * 
+ * Esta função percorre recursivamente as antenas adjacentes ainda não visitadas,
+ * marcando cada antena como visitada e adicionando-a a uma lista ligada de visitadas.
+ * 
+ * @param vertice Apontador para um vertice
+ * @param inicio Apontador para a lista das Antenas
+ * @param visitadas Apontador para a lista das Antenas Visitadas
+ * @return AntenasVisitadas* Apontador para uma lista que contem todas as Antenas Visitadas
+ */
+ AntenasVisitadas* TravProfu (Antena* vertice,Antena* inicio, AntenasVisitadas* visitadas){
+    bool sucesso = false;
+    if(vertice == NULL || vertice->visitado == true)return visitadas;
+
+    vertice->visitado = true;
+
+    AntenasVisitadas* nova=CriarVisitado(vertice->l, vertice->c, &sucesso);
+    if(sucesso == true){
+        visitadas = InserirVisitadas(visitadas, nova, &sucesso);
+    }
+
+    for(Adjacencia* adj = vertice->Adj ; adj != NULL ; adj = adj->next){
+        for(Antena* aux = inicio ; aux != NULL ; aux = aux->next){
+            if(aux->l == adj->l && aux->c == adj->c && aux->visitado ==false){
+                visitadas = TravProfu(aux,inicio, visitadas);
+            }
+        }
+    }
+    return visitadas;
+    
+ }
+ 
+/**
+ * @brief Função que realiza a travessia completa
+ * 
+ * @param inicio Apontador para o inicio da lista das Antenas
+ * @return AntenasVisitadas* Apontador para o inicio da listas das Antenas Visitadas
+ */
+ AntenasVisitadas* TravessiaCompleta(Antena* inicio){
+    bool sucesso = LimparVisitado(inicio);
+    if (!sucesso) return NULL;
+
+    AntenasVisitadas* visitadas = NULL;
+
+    for (Antena* aux = inicio; aux != NULL; aux = aux->next) {
+        if (!aux->visitado) {
+            visitadas = TravProfu(aux, inicio, visitadas);
+        }
+    }
+
+    return visitadas;
+}
+
+
+#pragma endregion 
