@@ -95,7 +95,7 @@ Antena* InserirAntena(Antena* inicio, Antena* nova, Dimensao* matriz, bool* veri
         *verificar = true;
         return inicio;
     }
-
+ 
     if(aux->next == NULL && (aux->l < nova->l || (aux->l == nova->l && aux->c < nova->c))){ // Caso esteja no fim           
         aux->next = nova;
         *verificar = true;
