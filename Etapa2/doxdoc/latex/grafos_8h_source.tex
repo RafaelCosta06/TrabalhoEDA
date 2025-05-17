@@ -1,0 +1,116 @@
+\doxysection{grafos.\+h}
+\hypertarget{grafos_8h_source}{}\label{grafos_8h_source}\index{/root/EDA/TrabalhoEDA/Etapa2/src/grafos.h@{/root/EDA/TrabalhoEDA/Etapa2/src/grafos.h}}
+\mbox{\hyperlink{grafos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \#include\ <stdbool.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \#pragma\ region\ Estrutura\ de\ dados}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00019\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencia}{Adjacencia}}\{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ l,c;\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencia}{Adjacencia}}*\ next;}
+\DoxyCodeLine{00022\ \ \}\mbox{\hyperlink{structAdjacencia}{Adjacencia}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ l,c;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\ *\ next;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencia}{Adjacencia}}\ *\ Adj;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ visitado;}
+\DoxyCodeLine{00030\ \ \}\mbox{\hyperlink{structAntena}{Antena}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}\{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ l;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ c;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ next;}
+\DoxyCodeLine{00036\ \ \}\mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \#pragma\ endregion}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \#pragma\ region\ Vertices\ (Antenas)}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00054\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_abc59181c4a21721f033b0608737ef9dc}{CriarAntena}}(\ \textcolor{keywordtype}{char}\ frequencia,\ \textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00064\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_afb337edd1c0cf798b9fcbb47b3ac4dfd}{InserirAntena}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \mbox{\hyperlink{structAntena}{Antena}}*\ nova,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00074\ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_ab100c638c18250fb87c27952ca29a09c}{ExisteAntena}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \mbox{\hyperlink{structAntena}{Antena}}*\ antena);}
+\DoxyCodeLine{00075\ \ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00087\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_aabc3285b9000461ce6431ce3caa30ede}{RemoverAntena}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00096\ \ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_aa07029706551795e9ca3d63eede20f88}{RemoveTodasAntenas}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \#pragma\ endregion}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#pragma\ region\ Adjacencias}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00112\ \mbox{\hyperlink{structAdjacencia}{Adjacencia}}*\ \mbox{\hyperlink{grafos_8h_a58454784b253e2786d7bba4297e809d6}{CriarAdj}}\ (\textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_a7a9e6a0d49f62cf324305ec28726ef9b}{InsereAdj}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ vertice,\ \mbox{\hyperlink{structAdjacencia}{Adjacencia}}*\ nova);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00133\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_a4f672d0cdfe76eac312cc3742397df29}{CalcularAdj}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00143\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_a96dfbe6ad33f21f436505830f7f5a682}{EliminarAllAdj}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#pragma\ region\ Ficheiros}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00157\ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_ac8b957044c2807d104bb9607ee98eed9}{CarregarFicheiro}}(\textcolor{keywordtype}{char}*\ NomeFicheiro,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_a45bbba2eb137e568632ac206ccc184e6}{GuardarFicheiroBin}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \textcolor{keywordtype}{char}*\ NomeFicheiro);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00178\ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{grafos_8h_a1f8a552cf173018f6b9204ce518fa668}{CarregarFicheiroBin}}\ (\textcolor{keywordtype}{char}*\ NomeFicheiro,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#pragma\ region\ Visitados}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00197\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ \mbox{\hyperlink{grafos_8h_a58b82fbc20915a3ceab2561cbf338507}{CriarVisitado}}\ (\textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00207\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ \mbox{\hyperlink{grafos_8h_a4c6fb519b044cd9a92ff920d5b905940}{InserirVisitadas}}(\mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ inicio,\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ nova,\ \textcolor{keywordtype}{bool}*\ verificar);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00217\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{grafos_8h_a1faa8ed216d0f84d1e9135393a80bdba}{LimparVisitado}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#pragma\ region\ Travessia}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00236\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ \mbox{\hyperlink{grafos_8h_afa35da559856e46cf75a1eede938c6f8}{IniciarTravProfu}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \textcolor{keywordtype}{int}\ l,\ \textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00247\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ \mbox{\hyperlink{grafos_8h_a68df353ee5e963df4bad3ef801c8aa5d}{TravProfu}}\ (\mbox{\hyperlink{structAntena}{Antena}}*\ vertice,\mbox{\hyperlink{structAntena}{Antena}}*\ inicio,\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ visitadas);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00255\ \mbox{\hyperlink{structAntenasVisitadas}{AntenasVisitadas}}*\ \mbox{\hyperlink{grafos_8h_a389ce091bd39cfe6686f338e2af79adf}{TravessiaCompleta}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{grafos_8h_a1be8714ae9bf0d6f80d1b24a69db8687}{ImprimirAdjacencias}}(\mbox{\hyperlink{structAntena}{Antena}}*\ inicio);}
+
+\end{DoxyCode}
