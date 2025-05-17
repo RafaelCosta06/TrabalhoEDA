@@ -176,26 +176,6 @@
     return inicio;
  }
 
- /**
-  * @brief Função que romove todos os vertices (Antenas)
-  * 
-  * A função percorre toda a lista das antenas e invoca a função RemoverAntena, que remove a antena escolhida.
-  * 
-  * @param inicio Apontador para o inicio da lista dos vértices
-  * @return Antena* Apontador para o inicio da lista dos vertices, a NULL, porque removeu todas as antenas
-  */
- Antena* RemoveTodasAntenas(Antena* inicio){
-    Antena* aux = inicio;
-    bool verificar;
-
-    while(inicio != NULL){
-        int l = aux->l;
-        int c = aux->c;
-        inicio = RemoverAntena(inicio, l,c, &verificar);  // devolve o incio da lista sem a Antena
-    }
-    return NULL;
- }
-
  #pragma endregion
 
  #pragma region Adjacencias

@@ -86,15 +86,6 @@
   */
  Antena* RemoverAntena (Antena* inicio, int l, int c, bool* verificar);
 
- /**
-  * @brief Função que romove todos os vertices (Antenas)
-  * 
-  * 
-  * @param inicio Apontador para o inicio da lista dos vértices
-  * @return Antena* Apontador para o inicio da lista dos vertices, a NULL, porque removeu todas as antenas
-  */
- Antena* RemoveTodasAntenas(Antena* inicio);
-
 
  #pragma endregion
 

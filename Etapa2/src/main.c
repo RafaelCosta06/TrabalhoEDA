@@ -80,7 +80,7 @@ int main(){
 
 
 printf("Travessia através do vertice (3,0)\n");
-    visitadas = IniciarTravProfu(head, 3,0);
+    visitadas = IniciarTravProfu(inicio, 3,0);
     if(visitadas == NULL){
         printf("Erro!!!");
     }else{
